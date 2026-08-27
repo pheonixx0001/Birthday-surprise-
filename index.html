@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little World For Ananta ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(120,0,20,.28),transparent 35%),
+        radial-gradient(circle at 80% 70%,rgba(190,20,50,.18),transparent 35%),
+        #090204;
+    color:#fff5f5;
+    font-family:'Montserrat',sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================
+   AMBIENT BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at center,
+        transparent 35%,
+        rgba(0,0,0,.55) 100%);
+    z-index:-5;
+}
+
+#particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-2;
+}
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:#ffd9df;
+    border-radius:50%;
+    opacity:.5;
+    animation:floatParticle linear infinite;
+}
+
+@keyframes floatParticle{
+    from{
+        transform:translateY(110vh) scale(.5);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.7;
+    }
+
+    85%{
+        opacity:.7;
+    }
+
+    to{
+        transform:translateY(-10vh) scale(1.2);
+        opacity:0;
+    }
+}
+
+/* =========================
+   PETALS
+========================= */
+
+.petal{
+    position:fixed;
+    top:-30px;
+    width:12px;
+    height:18px;
+    background:#7e1025;
+    border-radius:100% 0 100% 0;
+    opacity:.7;
+    pointer-events:none;
+    z-index:5;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(0) rotate(0deg);
+    }
+
+    100%{
+        transform:translateY(110vh) rotate(540deg);
+    }
+}
+
+/* =========================
+   COMMON
+========================= */
+
+button{
+    font-family:inherit;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(45px);
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   OPENING
+========================= */
+
+#welcome{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+    position:relative;
+}
+
+.opening{
+    max-width:850px;
+    animation:openingIn 2s ease;
+}
+
+@keyframes openingIn{
+    from{
+        opacity:0;
+        transform:translateY(35px) scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.opening-small{
+    font-size:11px;
+    letter-spacing:6px;
+    text-transform:uppercase;
+    color:#dba5ae;
+    margin-bottom:25px;
+}
+
+.opening h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(65px,12vw,145px);
+    line-height:.8;
+    font-weight:500;
+    color:#fff;
+    text-shadow:
+        0 0 35px rgba(160,0,30,.5);
+}
+
+.opening h1 span{
+    display:block;
+    color:#b51d3b;
+    font-style:italic;
+}
+
+.opening-text{
+    margin:35px auto;
+    max-width:520px;
+    line-height:1.9;
+    color:#d9bfc3;
+    font-size:15px;
+}
+
+.enter-button{
+    position:relative;
+    padding:16px 35px;
+    border-radius:100px;
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(90,0,15,.35);
+    color:white;
+    cursor:pointer;
+    letter-spacing:1px;
+    backdrop-filter:blur(15px);
+    transition:.4s ease;
+    overflow:hidden;
+}
+
+.enter-button::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.15),
+        transparent
+    );
+    transform:translateX(-100%);
+    transition:.7s;
+}
+
+.enter-button:hover::before{
+    transform:translateX(100%);
+}
+
+.enter-button:hover{
+    transform:translateY(-4px);
+    box-shadow:
+        0 0 35px rgba(150,0,35,.45);
+    border-color:#b51d3b;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+#mainContent{
+    animation:mainIn 1.5s ease;
+}
+
+@keyframes mainIn{
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+section{
+    position:relative;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:80px 25px;
+}
+
+.hero-label{
+    font-size:11px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:#b86c78;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(55px,10vw,120px);
+    font-weight:500;
+    line-height:.9;
+    max-width:1000px;
+}
+
+.hero h1 span{
+    color:#a71936;
+    font-style:italic;
+}
+
+.hero-description{
+    max-width:600px;
+    margin-top:30px;
+    color:#c9b4b8;
+    line-height:1.9;
+}
+
+.scroll-hint{
+    position:absolute;
+    bottom:35px;
+    font-size:10px;
+    letter-spacing:4px;
+    color:#80666b;
+    animation:breathe 2s ease-in-out infinite;
+}
+
+@keyframes breathe{
+    0%,100%{
+        opacity:.35;
+    }
+
+    50%{
+        opacity:1;
+    }
+}
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown{
+    display:flex;
+    gap:15px;
+    margin-top:55px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.time-box{
+    width:105px;
+    height:105px;
+    border:1px solid rgba(180,30,60,.3);
+    background:rgba(40,0,8,.35);
+    backdrop-filter:blur(18px);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    border-radius:20px;
+    transition:.4s ease;
+}
+
+.time-box:hover{
+    transform:translateY(-8px);
+    border-color:#a71936;
+    box-shadow:0 15px 40px rgba(100,0,20,.25);
+}
+
+.time-box span{
+    font-size:31px;
+    font-weight:500;
+}
+
+.time-box small{
+    margin-top:5px;
+    font-size:9px;
+    letter-spacing:2px;
+    color:#9c7c82;
+    text-transform:uppercase;
+}
